@@ -1,2 +1,2 @@
 # deliveryApp_project
-it is a e-commerce deliveryapp .
+it is an e-commerce deliveryapp .
