@@ -29,14 +29,14 @@ class AppColumn extends StatelessWidget {
               return Icon(
                 Icons.star,
                 color: AppColors.mainColor,
-                size: 15,
+                size: Dimentional.font16,
               );
             })),
-            const SizedBox(width: 10),
+             SizedBox(width: Dimentional.width10),
             SmallText(text: '4.5'),
-            const SizedBox(width: 10),
+             SizedBox(width: Dimentional.width10),
             SmallText(text: '123'),
-            const SizedBox(width: 10),
+             SizedBox(width: Dimentional.width10),
             SmallText(text: 'comment')
           ],
         ),

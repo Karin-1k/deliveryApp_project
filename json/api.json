@@ -1,0 +1,81 @@
+[
+    {
+        "totalSize": 6,
+        "typeId": 1,
+        "offset": 0,
+        "products": [
+            {
+                "id": 1,
+                "name": "Product 1",
+                "description": "This is a long description for Product 1. It provides detailed information about the features and benefits of the product. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel quam eu erat tristique vestibulum. Fusce nec urna vel libero tincidunt mattis ac ut arcu. Quisque auctor tincidunt tellus, in malesuada libero fringilla nec.",
+                "price": 100,
+                "stars": 4,
+                "img": "product1.jpg",
+                "location": "Somewhere",
+                "createdAt": "2023-08-16",
+                "updatedAt": "2023-08-16",
+                "typeId": 1
+            },
+            {
+                "id": 2,
+                "name": "Product 2",
+                "description": "This is a long description for Product 2. It provides detailed information about the features and benefits of the product. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel quam eu erat tristique vestibulum. Fusce nec urna vel libero tincidunt mattis ac ut arcu. Quisque auctor tincidunt tellus, in malesuada libero fringilla nec.",
+                "price": 150,
+                "stars": 5,
+                "img": "product2.webp",
+                "location": "Anywhere",
+                "createdAt": "2023-08-16",
+                "updatedAt": "2023-08-16",
+                "typeId": 1
+            },
+            {
+                "id": 3,
+                "name": "Product 3",
+                "description": "This is a long description for Product 3. It provides detailed information about the features and benefits of the product. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel quam eu erat tristique vestibulum. Fusce nec urna vel libero tincidunt mattis ac ut arcu. Quisque auctor tincidunt tellus, in malesuada libero fringilla nec.",
+                "price": 200,
+                "stars": 4,
+                "img": "product3.jpg",
+                "location": "Everywhere",
+                "createdAt": "2023-08-16",
+                "updatedAt": "2023-08-16",
+                "typeId": 1
+            },
+            {
+                "id": 4,
+                "name": "Product 4",
+                "description": "This is a long description for Product 4. It provides detailed information about the features and benefits of the product. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel quam eu erat tristique vestibulum. Fusce nec urna vel libero tincidunt mattis ac ut arcu. Quisque auctor tincidunt tellus, in malesuada libero fringilla nec.",
+                "price": 120,
+                "stars": 3,
+                "img": "product4.jpg",
+                "location": "Nowhere",
+                "createdAt": "2023-08-16",
+                "updatedAt": "2023-08-16",
+                "typeId": 1
+            },
+            {
+                "id": 5,
+                "name": "Product 5",
+                "description": "This is a long description for Product 5. It provides detailed information about the features and benefits of the product. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel quam eu erat tristique vestibulum. Fusce nec urna vel libero tincidunt mattis ac ut arcu. Quisque auctor tincidunt tellus, in malesuada libero fringilla nec.",
+                "price": 80,
+                "stars": 4,
+                "img": "product5.png",
+                "location": "Somewhere",
+                "createdAt": "2023-08-16",
+                "updatedAt": "2023-08-16",
+                "typeId": 1
+            },
+            {
+                "id": 6,
+                "name": "Product 6",
+                "description": "This is a long description for Product 6. It provides detailed information about the features and benefits of the product. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel quam eu erat tristique vestibulum. Fusce nec urna vel libero tincidunt mattis ac ut arcu. Quisque auctor tincidunt tellus, in malesuada libero fringilla nec.",
+                "price": 250,
+                "stars": 5,
+                "img": "product6.webp",
+                "location": "Anywhere",
+                "createdAt": "2023-08-16",
+                "updatedAt": "2023-08-16",
+                "typeId": 1
+            }
+        ]
+    }
+]
