@@ -16,7 +16,6 @@ class Dimentional {
   static final double height45 = (screenHight / 17.3);
   static final double height120 = (screenHight / 6.5);
 
-
   //*dynamic width
   static final double width10 = (screenHight / 78.1);
   static final double width15 = (screenHight / 52);
@@ -43,6 +42,6 @@ class Dimentional {
   //* popular food sizes
   static final double popularcontimgsize = screenHight / 2.2;
 
-
-
+//* splash images
+  static final double soplashImage = screenHight / 3.1;
 }

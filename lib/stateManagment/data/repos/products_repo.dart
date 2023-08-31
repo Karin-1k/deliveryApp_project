@@ -7,7 +7,7 @@ class ProductsRepo {
   Future<List<ProductsModul>> getProducts() async {
     try {
       final response =
-          await get(Uri.parse(mainUrl));
+          await get(Uri.parse(Constants.mainUrl));
       List result = await co.json.decode(response.body);
 
       final value = result.map((json) => ProductsModul.fromJson(json)).toList();

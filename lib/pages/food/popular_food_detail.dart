@@ -4,6 +4,7 @@ import 'package:dlivery_app_project/stateManagment/blocs/bloc/products_bloc.dart
 import 'package:dlivery_app_project/stateManagment/cubit/cubit/quantity_cubit.dart';
 import 'package:dlivery_app_project/stateManagment/data/moduls/products_modul.dart';
 import 'package:dlivery_app_project/utils/dimentionals.dart';
+import 'package:dlivery_app_project/utils/enums.dart';
 import 'package:dlivery_app_project/widgets/appIcon.dart';
 import 'package:dlivery_app_project/widgets/app_Column.dart';
 import 'package:dlivery_app_project/widgets/expandable_text_widget.dart';
@@ -196,7 +197,8 @@ class PopularFoodDetail extends StatelessWidget {
                       try {
                         context.read<AddCartBloc>().add(AddCartEvent(
                             quantity: state.quantity,
-                            products: productsInfo!.products![pageId!]));
+                            products: productsInfo!.products![pageId!],
+                            wichPage: ToWichPage.popularFoodPage));
                       } catch (e) {
                         print('this is a fucking err $e');
                       }

@@ -3,6 +3,7 @@ import 'package:dlivery_app_project/stateManagment/cubit/cubit/quantity_cubit.da
 import 'package:dlivery_app_project/stateManagment/data/moduls/products_modul.dart';
 import 'package:dlivery_app_project/utils/colors.dart';
 import 'package:dlivery_app_project/utils/dimentionals.dart';
+import 'package:dlivery_app_project/utils/enums.dart';
 import 'package:dlivery_app_project/widgets/appIcon.dart';
 import 'package:dlivery_app_project/widgets/bigText.dart';
 import 'package:dlivery_app_project/widgets/expandable_text_widget.dart';
@@ -202,7 +203,8 @@ class RecommendedFoodDetail extends StatelessWidget {
                         onTap: () {
                           context.read<AddCartBloc>().add(AddCartEvent(
                               quantity: state.quantity,
-                              products: productsInfo!.products![pageId!]));
+                              products: productsInfo!.products![pageId!],
+                              wichPage: ToWichPage.recommendedFoodPage));
                         },
                         child: Row(
                           children: [
