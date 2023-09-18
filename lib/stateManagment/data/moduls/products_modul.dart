@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 class ProductsModul {
   int? totalSize;
   int? typeId;
@@ -25,7 +27,7 @@ class Products {
   String? description;
   int? price;
   int? stars;
-  String? img;
+  List<int>? img;
   String? location;
   String? createdAt;
   String? updatedAt;
@@ -47,9 +49,13 @@ class Products {
     id = json['id'];
     name = json['name'];
     description = json['description'];
-    price = json['price'];
+    price = 100;
     stars = json['stars'];
-    img = json['img'];
+
+// parssing the img before sent to render
+    List<dynamic> imgDynamic = json['img']['data'];
+    List<int> i = imgDynamic.cast<int>();
+    img = i;
     location = json['location'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];

@@ -6,10 +6,13 @@ import '../moduls/products_modul.dart';
 class ProductsRepo {
   Future<List<ProductsModul>> getProducts() async {
     try {
-      final response =
-          await get(Uri.parse(Constants.mainUrl));
-      List result = await co.json.decode(response.body);
-
+      // final response = await get(Uri.parse(Constants.mainUrl));
+      final apiResponse = await get(Uri.parse(Constants.nodeApi));
+      List convertApi = await co.json.decode(apiResponse.body);
+      var result = [
+        {"totalSize": 6, "typeId": 1, "offset": 0, "products": convertApi}
+      ];
+      // List result = await co.json.decode(response.body);
       final value = result.map((json) => ProductsModul.fromJson(json)).toList();
       return value;
     } catch (e) {

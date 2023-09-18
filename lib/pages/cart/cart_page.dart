@@ -1,3 +1,6 @@
+import 'dart:typed_data';
+
+import 'package:cached_memory_image/cached_memory_image.dart';
 import 'package:dlivery_app_project/pages/food/popular_food_detail.dart';
 import 'package:dlivery_app_project/pages/food/recommended_food_detail.dart';
 import 'package:dlivery_app_project/pages/home/homePage.dart';
@@ -181,12 +184,15 @@ class CartPage extends StatelessWidget {
                                                     bottom:
                                                         Dimentional.height10),
                                                 decoration: BoxDecoration(
-                                                  image: DecorationImage(
-                                                      filterQuality:
-                                                          FilterQuality.high,
-                                                      fit: BoxFit.cover,
-                                                      image: AssetImage(
-                                                          'assets/images/${state.getCarts[index].img}')),
+                                                  // image: DecorationImage(
+                                                  //   filterQuality:
+                                                  //       FilterQuality.high,
+                                                  //   fit: BoxFit.cover,
+                                                  //   image:
+                                                  //   MemoryImage(Uint8List.fromList(state.getCarts[index].img!))
+                                                  //   //  AssetImage(
+                                                  //   //     'assets/images/${state.getCarts[index].img}'),
+                                                  // ),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           Dimentional.radius20),
@@ -194,6 +200,15 @@ class CartPage extends StatelessWidget {
                                                 ),
                                                 height: Dimentional.width20 * 5,
                                                 width: Dimentional.height20 * 5,
+                                                child: ClipRRect(
+            borderRadius: BorderRadius.circular(Dimentional.radius20),
+            child: CachedMemoryImage(
+              filterQuality: FilterQuality.high,
+              fit: BoxFit.cover,
+              uniqueKey: state.getCarts[index].id!.toString(),
+              bytes: Uint8List.fromList(state.getCarts[index].img!),
+            ),
+          ),
                                               ),
                                             ),
                                             //* text container

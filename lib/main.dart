@@ -8,7 +8,6 @@ import 'package:dlivery_app_project/utils/routers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-
 import 'package:dlivery_app_project/pages/food/popular_food_detail.dart';
 import 'package:dlivery_app_project/pages/food/recommended_food_detail.dart';
 import 'package:dlivery_app_project/pages/home/foodPageBody.dart';

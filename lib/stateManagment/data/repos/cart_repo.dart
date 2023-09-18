@@ -35,6 +35,7 @@ class CartRepo {
   void addtoCartList_history(List<CartModel> cartListHistory) {
 //     sharedPreferences.remove(Constants.cartListKey);
 // sharedPreferences.remove(Constants.cartListhistoryKey);
+// print('shared is empty now ');
     cart_History = [];
     var time = DateTime.now();
 

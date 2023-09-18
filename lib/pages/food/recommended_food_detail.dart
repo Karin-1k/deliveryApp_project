@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
+import 'package:cached_memory_image/cached_memory_image.dart';
 import 'package:dlivery_app_project/pages/cart/cart_page.dart';
 import 'package:dlivery_app_project/stateManagment/cubit/cubit/quantity_cubit.dart';
 import 'package:dlivery_app_project/stateManagment/data/moduls/products_modul.dart';
@@ -18,6 +22,11 @@ class RecommendedFoodDetail extends StatelessWidget {
   const RecommendedFoodDetail({super.key, this.pageId, this.productsInfo});
   @override
   Widget build(BuildContext context) {
+    print('recommended food page');
+    // String jsonString = productsInfo!.products![pageId!].img!;
+    // List<dynamic> dynamicList = jsonDecode(jsonString);
+    // List<int> intListImg = dynamicList.cast<int>();
+
     //!setting quantity to the each page individualy
     final isexist = context.watch<AddCartBloc>().state.addCart[pageId! + 1];
     if (isexist != null && isexist.isExist == true) {
@@ -95,11 +104,19 @@ class RecommendedFoodDetail extends StatelessWidget {
             backgroundColor: AppColors.yellowColor,
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                'assets/images/${productsInfo!.products![pageId!].img}',
+              background: CachedMemoryImage(
                 width: double.maxFinite,
+                filterQuality: FilterQuality.high,
                 fit: BoxFit.cover,
+                uniqueKey: productsInfo!.products![pageId!].id!.toString(),
+                bytes:
+                    Uint8List.fromList(productsInfo!.products![pageId!].img!),
               ),
+              // Image.memory(
+              //   Uint8List.fromList(productsInfo!.products![pageId!].img!),
+              //   width: double.maxFinite,
+              //   fit: BoxFit.cover,
+              // ),
             ),
           ),
           SliverToBoxAdapter(

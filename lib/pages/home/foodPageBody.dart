@@ -1,5 +1,7 @@
 import 'dart:async';
-
+import 'dart:convert';
+import 'dart:typed_data';
+import 'package:cached_memory_image/cached_memory_image.dart';
 import 'package:dlivery_app_project/pages/food/recommended_food_detail.dart';
 import 'package:dlivery_app_project/stateManagment/blocs/bloc/products_bloc.dart';
 import 'package:dlivery_app_project/stateManagment/data/moduls/products_modul.dart';
@@ -10,10 +12,10 @@ import 'package:dlivery_app_project/widgets/bigText.dart';
 import 'package:dlivery_app_project/widgets/icons_text.dart';
 import 'package:dlivery_app_project/widgets/smallText.dart';
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:socket_io_client/socket_io_client.dart' as io;
 
 import '../food/popular_food_detail.dart';
 
@@ -32,6 +34,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
   void initState() {
     super.initState();
+    context.read<ProductsBloc>().add(GetProductsEvent());
 
     pageController.addListener(() {
       setState(() {
@@ -45,12 +48,15 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     super.dispose();
   }
 
+  int num = 0;
   @override
   Widget build(BuildContext context) {
     //*getting the datas from the server
-    context.watch<ProductsBloc>().add(GetProductsEvent());
+
+    print(num++);
     return Builder(builder: (context) {
       final _products = context.watch<ProductsBloc>().state;
+
       if (_products is ProductsInitialState) {
         return Column(
           children: [
@@ -63,7 +69,6 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       }
       if (_products is ProductsDatasState) {
         final _values = _products.products[0];
-
         return Column(
           children: [
             //* slide section
@@ -122,6 +127,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 ],
               ),
             ), //! list view
+
             ListView.builder(
               shrinkWrap:
                   true, //* bcz of that properie u dont need container or
@@ -152,10 +158,23 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                             color: AppColors.mainColor,
                             borderRadius:
                                 BorderRadius.circular(Dimentional.radius15),
-                            image: DecorationImage(
+                            // image: DecorationImage(
+                            //     fit: BoxFit.cover,
+                            //     image: MemoryImage(Uint8List.fromList(
+                            //         _values.products![index].img!))
+                            //     // AssetImage('assets/images/food1.jpg'),
+                            //     ),
+                          ),
+                          child: ClipRRect(
+                            borderRadius:
+                                BorderRadius.circular(Dimentional.radius15),
+                            child: CachedMemoryImage(
+                              filterQuality: FilterQuality.high,
                               fit: BoxFit.cover,
-                              image: AssetImage(
-                                  'assets/images/${_values.products![index].img}'),
+                              uniqueKey:
+                                  _values.products![index].id!.toString(),
+                              bytes: Uint8List.fromList(
+                                  _values.products![index].img!),
                             ),
                           ),
                         ),
@@ -280,10 +299,20 @@ Widget _buildPageItem(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(Dimentional.radius30),
             color: AppColors.mainColor,
-            image: DecorationImage(
+            // image: DecorationImage(
+            //     fit: BoxFit.cover,
+            //     image: MemoryImage(
+            //         Uint8List.fromList(product.products![index].img!))
+            //     // AssetImage('assets/images/food1.jpg'),
+            //     ),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(Dimentional.radius30),
+            child: CachedMemoryImage(
+              filterQuality: FilterQuality.high,
               fit: BoxFit.cover,
-              image:
-                  AssetImage('assets/images/${product.products![index].img}'),
+              uniqueKey: product.products![index].id!.toString(),
+              bytes: Uint8List.fromList(product.products![index].img!),
             ),
           ),
         ),

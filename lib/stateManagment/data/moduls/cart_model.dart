@@ -5,7 +5,7 @@ class CartModel {
   int? id;
   String? name;
   int? price;
-  String? img;
+  List<int>? img;
   int? quantity;
   bool? isExist = false;
   String? time;
@@ -24,7 +24,11 @@ class CartModel {
     id = json['id'];
     name = json['name'];
     price = json['price'];
-    img = json['img'];
+
+    // parssing the img before sent to render
+    List<dynamic> imgDynamic = json['img'];
+    List<int> i = imgDynamic.cast<int>();
+    img = i;
     quantity = json['quantity'];
     isExist = json['isExist'];
     time = json['time'];

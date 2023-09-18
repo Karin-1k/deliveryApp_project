@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dlivery_app_project/stateManagment/data/moduls/products_modul.dart';
 import 'package:dlivery_app_project/stateManagment/data/repos/products_repo.dart';
 import 'package:equatable/equatable.dart';
+import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 
 part 'products_event.dart';

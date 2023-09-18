@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
+import 'package:cached_memory_image/cached_memory_image.dart';
 import 'package:dlivery_app_project/pages/cart/cart_page.dart';
 import 'package:dlivery_app_project/stateManagment/blocs/bloc/addCart_bloc/bloc/add_cart_bloc.dart';
 import 'package:dlivery_app_project/stateManagment/blocs/bloc/products_bloc.dart';
@@ -22,6 +26,12 @@ class PopularFoodDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('popular food page');
+    // String jsonString = productsInfo!.products![pageId!].img!;
+    // List<dynamic> dynamicList = jsonDecode(jsonString);
+    // List<int> intListImg = dynamicList.cast<int>();
+
+
     //!setting quantity to the each page individualy
     final isexist = context.watch<AddCartBloc>().state.addCart[pageId! + 1];
     if (isexist != null && isexist.isExist == true) {
@@ -41,11 +51,19 @@ class PopularFoodDetail extends StatelessWidget {
               height: Dimentional.popularcontimgsize,
               width: double.maxFinite,
               decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage(
-                      'assets/images/${productsInfo!.products![pageId!].img}'),
-                ),
+                // image: DecorationImage(
+                //     fit: BoxFit.cover,
+                //     image: MemoryImage(Uint8List.fromList(productsInfo!.products![pageId!].img!))
+
+                //     // AssetImage(
+                //     //     'assets/images/${productsInfo!.products![pageId!].img}'),
+                //     ),
+              ),
+              child: CachedMemoryImage(
+                filterQuality: FilterQuality.high,
+                fit: BoxFit.cover,
+                uniqueKey: productsInfo!.products![pageId!].id!.toString(),
+                bytes: Uint8List.fromList(productsInfo!.products![pageId!].img!),
               ),
             ),
           ),

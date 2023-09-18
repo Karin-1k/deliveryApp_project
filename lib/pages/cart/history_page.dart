@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cached_memory_image/cached_memory_image.dart';
 import 'package:dlivery_app_project/pages/cart/cart_page.dart';
 import 'package:dlivery_app_project/stateManagment/blocs/bloc/addCart_bloc/bloc/add_cart_bloc.dart';
 import 'package:dlivery_app_project/utils/colors.dart';
@@ -134,17 +135,47 @@ class _HistoryPageState extends State<HistoryPage> {
                                                             right: Dimentional
                                                                     .width10 /
                                                                 2),
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius.circular(
-                                                                    Dimentional
-                                                                            .radius15 /
-                                                                        2),
-                                                            image: DecorationImage(
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                                image: AssetImage(
-                                                                    'assets/images/${gitcartListHistory[listCounter - 1].img}'))),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius: BorderRadius
+                                                              .circular(Dimentional
+                                                                      .radius15 /
+                                                                  2),
+                                                          // image: DecorationImage(
+                                                          //     fit: BoxFit.cover,
+                                                          //     image: MemoryImage(
+                                                          //         Uint8List.fromList(
+                                                          //             gitcartListHistory[listCounter -
+                                                          //                     1]
+                                                          //                 .img!))
+                                                          //     //  AssetImage(
+                                                          //     //     'assets/images/${gitcartListHistory[listCounter - 1].img}'),
+                                                          //     ),
+                                                        ),
+                                                        child: ClipRRect(
+                                                          borderRadius: BorderRadius
+                                                              .circular(Dimentional
+                                                                      .radius15 /
+                                                                  2),
+                                                          child:
+                                                              CachedMemoryImage(
+                                                            filterQuality:
+                                                                FilterQuality
+                                                                    .high,
+                                                            fit: BoxFit.cover,
+                                                            uniqueKey:
+                                                                gitcartListHistory[
+                                                                        listCounter -
+                                                                            1]
+                                                                    .id!
+                                                                    .toString(),
+                                                            bytes: Uint8List.fromList(
+                                                                gitcartListHistory[
+                                                                        listCounter -
+                                                                            1]
+                                                                    .img!),
+                                                          ),
+                                                        ),
                                                       );
                                                     },
                                                   ),
