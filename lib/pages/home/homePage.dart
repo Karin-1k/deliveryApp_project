@@ -1,10 +1,15 @@
+import 'package:dlivery_app_project/pages/account/account_page.dart';
+import 'package:dlivery_app_project/pages/auth/sign_up_page.dart';
 import 'package:dlivery_app_project/pages/cart/history_page.dart';
 import 'package:dlivery_app_project/pages/home/main_food_page.dart';
 import 'package:dlivery_app_project/utils/colors.dart';
 import 'package:dlivery_app_project/utils/dimentionals.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+
+import '../../stateManagment/blocs/bloc/products_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,9 +23,9 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _buildScreens() {
     return [
       MainFoodPage(),
-      Center(child: Container(child: Text('page two'))),
+      Container(child: Center(child: Text('page two'))),
       HistoryPage(),
-      Center(child: Container(child: Text('page four')))
+      AccountPage()
     ];
   }
 
@@ -63,6 +68,22 @@ class _HomePageState extends State<HomePage> {
   // }
 
   int changeScreen = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    // here is for fetching all products from database we set it here for not emit in all
+    //the time whenever we move from a page to another here is once be emiting
+    final _products = context.read<ProductsBloc>().state;
+    //this help us to not asking for fetching datas every time when we come to home page
+    // and home page created
+    if (_products is! ProductsDatasState) {
+      context.read<ProductsBloc>().add(GetProductsEvent());
+    }
+
+    print('la home pagawa ');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

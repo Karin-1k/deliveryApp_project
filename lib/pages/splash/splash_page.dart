@@ -3,7 +3,10 @@ import 'dart:async';
 import 'package:dlivery_app_project/stateManagment/data/repos/cart_repo.dart';
 import 'package:dlivery_app_project/utils/dimentionals.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../stateManagment/blocs/bloc/products_bloc.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -26,10 +29,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     Timer(Duration(seconds: 3), () {
       Navigator.pushNamed(context, '/homepage');
     });
-   
   }
-
- 
 
   @override
   Widget build(BuildContext context) {

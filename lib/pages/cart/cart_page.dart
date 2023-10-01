@@ -1,12 +1,18 @@
 import 'dart:typed_data';
 
 import 'package:cached_memory_image/cached_memory_image.dart';
+import 'package:dlivery_app_project/pages/auth/sign_in_page.dart';
 import 'package:dlivery_app_project/pages/food/popular_food_detail.dart';
 import 'package:dlivery_app_project/pages/food/recommended_food_detail.dart';
 import 'package:dlivery_app_project/pages/home/homePage.dart';
 import 'package:dlivery_app_project/pages/home/main_food_page.dart';
+import 'package:dlivery_app_project/pages/noDataPage/show_custom_snackbar.dart';
 import 'package:dlivery_app_project/stateManagment/blocs/bloc/addCart_bloc/bloc/add_cart_bloc.dart';
+import 'package:dlivery_app_project/stateManagment/blocs/bloc/authBloc/bloc/auth_bloc.dart';
+import 'package:dlivery_app_project/stateManagment/blocs/bloc/user_bloc/bloc/user_bloc.dart';
+import 'package:dlivery_app_project/stateManagment/data/repos/auth_repo.dart';
 import 'package:dlivery_app_project/utils/colors.dart';
+import 'package:dlivery_app_project/utils/constants.dart';
 import 'package:dlivery_app_project/utils/dimentionals.dart';
 import 'package:dlivery_app_project/utils/enums.dart';
 import 'package:dlivery_app_project/widgets/appIcon.dart';
@@ -15,6 +21,7 @@ import 'package:dlivery_app_project/widgets/smallText.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../stateManagment/blocs/bloc/products_bloc.dart';
 import '../../stateManagment/cubit/cubit/quantity_cubit.dart';
@@ -30,6 +37,7 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final _productsDataModel = context.watch<ProductsBloc>().state;
     final _addCartBloc = context.read<AddCartBloc>().state;
+    final _authbloc = context.watch<AuthBloc>().state;
     return Scaffold(
         body: Stack(
           children: [
@@ -201,14 +209,21 @@ class CartPage extends StatelessWidget {
                                                 height: Dimentional.width20 * 5,
                                                 width: Dimentional.height20 * 5,
                                                 child: ClipRRect(
-            borderRadius: BorderRadius.circular(Dimentional.radius20),
-            child: CachedMemoryImage(
-              filterQuality: FilterQuality.high,
-              fit: BoxFit.cover,
-              uniqueKey: state.getCarts[index].id!.toString(),
-              bytes: Uint8List.fromList(state.getCarts[index].img!),
-            ),
-          ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          Dimentional.radius20),
+                                                  child: CachedMemoryImage(
+                                                    filterQuality:
+                                                        FilterQuality.high,
+                                                    fit: BoxFit.cover,
+                                                    uniqueKey: state
+                                                        .getCarts[index].id!
+                                                        .toString(),
+                                                    bytes: Uint8List.fromList(
+                                                        state.getCarts[index]
+                                                            .img!),
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                             //* text container
@@ -375,12 +390,33 @@ class CartPage extends StatelessWidget {
                       ),
                       child: GestureDetector(
                         onTap: () {
-                          try {
-                            context
-                                .read<AddCartBloc>()
-                                .add(AddHistoryStorage());
-                          } catch (e) {
-                            print('this is a fucking err $e');
+                          context.read<UserBloc>().add(UserInfoEvent());
+                          var _userState = context.read<UserBloc>().state;
+                          if (_userState is! ExpiredTokenState) {
+                            context.read<AuthBloc>().add(IsLoggedin());
+                            if (_authbloc is LogginState) {
+                              if (_authbloc.isLoggedin) {
+                                try {
+                                  context
+                                      .read<AddCartBloc>()
+                                      .add(AddHistoryStorage());
+                                } catch (e) {
+                                  print('this is a fucking err $e');
+                                }
+                              } else {
+                                showCustomScackBar(
+                                    'you should sign in to order',
+                                    title: 'failed');
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => SignInPage()));
+                              }
+                            }
+                          } else {
+                            showCustomScackBar(
+                                'your account has been expired you should login again to order',
+                                title: 'account time');
                           }
                         },
                         child: Row(

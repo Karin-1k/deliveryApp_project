@@ -31,3 +31,5 @@ class AddHistroyForCartPage extends CartEventInitial {
   final String time;
   AddHistroyForCartPage({required this.time});
 }
+
+class RemoveHistoryDatasEvent extends CartEventInitial {}

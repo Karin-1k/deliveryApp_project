@@ -20,10 +20,8 @@ class _MainFoodPageState extends State<MainFoodPage> {
     context.read<ProductsBloc>().add(GetProductsEvent());
   }
 
-
   @override
   Widget build(BuildContext context) {
-
     return RefreshIndicator(
       color: AppColors.mainColor,
       onRefresh: () => refereshBloc(),
@@ -75,9 +73,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                 ],
               ),
             )),
-            const Expanded(
-                child: SingleChildScrollView(
-                    child: FoodPageBody())),
+            const Expanded(child: SingleChildScrollView(child: FoodPageBody())),
           ],
         ),
       ),

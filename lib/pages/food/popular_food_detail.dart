@@ -26,11 +26,9 @@ class PopularFoodDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('popular food page');
     // String jsonString = productsInfo!.products![pageId!].img!;
     // List<dynamic> dynamicList = jsonDecode(jsonString);
     // List<int> intListImg = dynamicList.cast<int>();
-
 
     //!setting quantity to the each page individualy
     final isexist = context.watch<AddCartBloc>().state.addCart[pageId! + 1];
@@ -51,19 +49,20 @@ class PopularFoodDetail extends StatelessWidget {
               height: Dimentional.popularcontimgsize,
               width: double.maxFinite,
               decoration: BoxDecoration(
-                // image: DecorationImage(
-                //     fit: BoxFit.cover,
-                //     image: MemoryImage(Uint8List.fromList(productsInfo!.products![pageId!].img!))
+                  // image: DecorationImage(
+                  //     fit: BoxFit.cover,
+                  //     image: MemoryImage(Uint8List.fromList(productsInfo!.products![pageId!].img!))
 
-                //     // AssetImage(
-                //     //     'assets/images/${productsInfo!.products![pageId!].img}'),
-                //     ),
-              ),
+                  //     // AssetImage(
+                  //     //     'assets/images/${productsInfo!.products![pageId!].img}'),
+                  //     ),
+                  ),
               child: CachedMemoryImage(
                 filterQuality: FilterQuality.high,
                 fit: BoxFit.cover,
                 uniqueKey: productsInfo!.products![pageId!].id!.toString(),
-                bytes: Uint8List.fromList(productsInfo!.products![pageId!].img!),
+                bytes:
+                    Uint8List.fromList(productsInfo!.products![pageId!].img!),
               ),
             ),
           ),

@@ -22,7 +22,6 @@ class RecommendedFoodDetail extends StatelessWidget {
   const RecommendedFoodDetail({super.key, this.pageId, this.productsInfo});
   @override
   Widget build(BuildContext context) {
-    print('recommended food page');
     // String jsonString = productsInfo!.products![pageId!].img!;
     // List<dynamic> dynamicList = jsonDecode(jsonString);
     // List<int> intListImg = dynamicList.cast<int>();

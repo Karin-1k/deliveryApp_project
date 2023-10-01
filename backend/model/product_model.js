@@ -1,6 +1,6 @@
 const db = require('../config/mysql');
 class ProductModel {
-
+// get the products form product table 
     static async allProduct() {
 
         return new Promise((resolve, reject) => {

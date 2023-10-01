@@ -1,11 +1,11 @@
 const mysql = require('mysql2');
-
+require('dotenv').config();
 var db = mysql.createConnection({
-    "host": "localhost",
-    "database": "delivery_food",
-    "user": "root",
-    "password": "",
-    "port":"3306"
+    "host": process.env.HOST,
+    "database": process.env.DATABASE,
+    "user": process.env.USER,
+    "password": process.env.PASSWORD,
+    "port": process.env.PORT
 });
 
 if (db.connect) {

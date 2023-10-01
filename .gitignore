@@ -45,3 +45,5 @@ app.*.map.json
 
 # these files from the porject couldnot be push are here 
 backend/node_modules
+backend/.env
+lib/utils/constants.dart

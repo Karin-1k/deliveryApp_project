@@ -24,6 +24,7 @@ class AddCartBloc extends Bloc<CartEventInitial, AddCartState> {
     add(CartEventInitial());
     on(setHistoryStorage);
     on(addHistroyForCartPage);
+    on(removeHistoryDatas);
   }
 
   void setInitialStorage(CartEventInitial event, Emitter emit) {
@@ -150,6 +151,10 @@ class AddCartBloc extends Bloc<CartEventInitial, AddCartState> {
         addCart: state.addCart,
         totlalQuantity: totlavalues,
         histroyDatas: gitcartListHistory));
+  }
+
+  void removeHistoryDatas(RemoveHistoryDatasEvent event, Emitter emit) {
+    emit(RemoveHistoryDatas());
   }
 
   @override

@@ -15,7 +15,8 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
   void _getProducts(GetProductsEvent event, Emitter emit) async {
     try {
       var data = ProductsRepo().getProducts();
-      var product = await data.then((value) => value);
+      List<ProductsModul> product = await data.then((value) => value);
+      print('im here now ');
       emit(ProductsDatasState(products: product));
     } catch (e) {
       emit(ErrorState(
