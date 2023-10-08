@@ -18,7 +18,7 @@ console.log(process.env.REGISTER);
 console.log(process.env.LOGIN);
 console.log(process.env.INFO);
 
-var server = app.listen(process.env.APPPORT, () => {
+var server = app.listen(process.env.APPPORT || 3000, () => {
     console.log('the server created');
 })
 
